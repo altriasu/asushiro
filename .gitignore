@@ -1,1 +1,15 @@
 **/.ipynb_checkpoints
+
+# 1. 全局构建目录（整个项目的编译产物）
+**/build/
+# 注意：结尾加 / 表示「忽略整个目录」，不加 / 可能误判为文件（如避免忽略名为 build 的文件）
+
+**/CMakeCache.txt
+**/CMakeFiles/
+**/Makefile
+**/cmake_install.cmake
+
+**/.DS_Store       # Mac 系统文件
+**/.idea/          # Clion/IntelliJ 配置
+**/.vscode/        # VS Code 配置
+**/*.swp           # Vim 临时文件
