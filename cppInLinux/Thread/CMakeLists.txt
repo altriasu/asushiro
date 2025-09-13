@@ -10,9 +10,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 link_libraries(pthread)
 
-add_executable(firstBuild.out src/firstBuild.cpp)
-add_executable(Exception.out src/Exception.cpp)
-add_executable(dataShare.out src/dataShare.cpp)
+add_executable(firstBuild.out src/1firstBuild.cpp)
+add_executable(Exception.out src/2Exception.cpp)
+add_executable(dataShare.out src/3dataShare.cpp)
+add_executable(callOnce.out src/4callOnce.cpp)
+add_executable(conditionVariable.out src/5conditionVariable.cpp)
+add_executable(threadPool.out src/6threadPool.cpp)
 
 # 可选：指定可执行文件的输出路径（默认在build目录下）
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)

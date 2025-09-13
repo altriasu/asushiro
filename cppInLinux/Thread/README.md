@@ -42,3 +42,25 @@ mtx.unlock(); // 解锁
 - `try_lock_for(const std::chrono::duration<Rep, Period>& rel_time)`：尝试对互斥量进行加锁操作，如果当前互斥量已经被其他线程持有，则在rel_time时间内等待，直到互斥量被解锁后成功加锁，或者超时返回false
 - `try_lock_until(const std::chrono::time_point<Clock, Duration>& abs_time)`：尝试对互斥量进行加锁操作，如果当前互斥量已经被其他线程持有，则在abs_time时间点之前等待，直到互斥量被解锁后成功加锁，或者超时返回false
 - `unlock()`:解锁互斥量
+
+# 5. call_once与其使用场景
+单例设计模式需要确保某个类中只能创建一个实例，由于是全局唯一的，所以在使用单例模式的时候需要考虑线程安全问题。
+`call_once`是c++11中提供的一个函数模板，用于确保某个函数只被调用一次，并且在多线程环境下也能保证线程安全。
+只能在多线程中使用，在main中使用会报错
+```c++
+tmeplate<class Callable, class... Args>
+void call_once(std::once_flag& flag, Callable&& func, Args&&... args)
+```
+`std::once_flag`是一个类型，用于标识某个函数是否已经被调用过。
+`func`是被调用的函数，`args`是函数的参数。
+
+# 6. condition_variable与其使用场景
+常使用在生产者消费者模型
+`condition_variable`是c++11中提供的一个类，用于实现线程间的同步。
+步骤如下：
+> 1. 创建一个condition_variable对象
+2. 创建一个互斥锁std::mutex对象，用来保护共享资源的访问
+3. 在需要等待条件变量的地方，使用std::unique_lock<std::mutex> 对象锁定互斥锁，并调用
+std::condition_variable::wait()、std::condition_variable::wait_for()等函数等待条件变量
+4. 在其他线程中需要同时等待的线程时，调用std::condition_vatriable::notify_one()
+或std::condition_variable::notify_all()函数
