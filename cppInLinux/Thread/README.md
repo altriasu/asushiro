@@ -64,3 +64,25 @@ void call_once(std::once_flag& flag, Callable&& func, Args&&... args)
 std::condition_variable::wait()、std::condition_variable::wait_for()等函数等待条件变量
 4. 在其他线程中需要同时等待的线程时，调用std::condition_vatriable::notify_one()
 或std::condition_variable::notify_all()函数
+
+# 7. 异步并发--async future packaged_task promise
+1. async、future
+是c++11中引入的函数模板，用于异步执行一个函数，并返回一个std::future对象，表示异步操作的结束。
+使用std::async可以方便进行异步编程，避免手动创建线程和管理线程的麻烦。
+2. packaged_task
+在c++中，packaged_task是一个类模板，用于讲一个可调用对象（如函数，函数对象，或lambda表达式）封装成一个可调用的对象。
+并返回一个std::future对象，表示异步操作的结果。packaged_task可以方便将一个函数或可调用对象转换成一个异步操作。
+3. promise
+在c++中，promise是一个类模板，用于在一个线程中产生一个值，并在另一个线程中获取这个值。promise通常与future和async一起使用。
+
+# 8. 原子操作--atomic
+`std::atomic`是c++11中的一个模板类，用于实现多线程环境下的原子操作。它提供了一种线程安全的方式来访问和修改共享变量，
+可以避免多线程环境中的数据竞争问题。
+`std::atomic`的使用方式类似于c++中的普通变量，但是它的操作是原子性的。也就是说，在多线程环境下，多个线程同时对同一个
+`std::atomic`变量进行操作时，不会出现数据竞争问题。
+以下是一些常见的`std::atomic`操作
+1. `load()`:将原子变量的值加载到当前线程的本地缓存中，并返回这个值。
+2. `store()`: 将`val`的值存储到原子变量中，并保证这个操作时原子性的。
+3. `exchange()`: 将`val`的值存储原子变量中，并返回修改前的旧值。
+4. `compare_exchange_strong(expected, desired)`: 如果原子变量当前值 == expected，则将其更新为 desired，并返回 true；
+否则返回 false，并将 expected 更新为当前值。

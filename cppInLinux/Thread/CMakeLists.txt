@@ -16,6 +16,10 @@ add_executable(dataShare.out src/3dataShare.cpp)
 add_executable(callOnce.out src/4callOnce.cpp)
 add_executable(conditionVariable.out src/5conditionVariable.cpp)
 add_executable(threadPool.out src/6threadPool.cpp)
+add_executable(asyncPromise.out src/7asyncPromise.cpp)
+add_executable(atomic.out src/8atomic.cpp)
+
+
 
 # 可选：指定可执行文件的输出路径（默认在build目录下）
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
