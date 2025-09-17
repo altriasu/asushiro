@@ -96,4 +96,5 @@ git branch -d <branchName>
 ```
 git commit -i -m ""
 ```
+<img src="sources/gitBranch.png" />
 
